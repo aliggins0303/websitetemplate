@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Build Your About Me Website – SBCS Family Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700;800&family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --grad:linear-gradient(90deg,#FF9F1C 0%,#FF5C8A 35%,#B23CF2 70%,#33B6F5 100%);
+  --orange:#FF8A00; --wordmark:#F7941D; --pink:#FF4F8B; --purple:#A033EE; --sky:#22AEF0; --lime:#C6F23A; --sun:#FFD23F;
+  --orange-soft:#FFF0DC; --pink-soft:#FFE6EF; --purple-soft:#F3E6FF; --sky-soft:#E1F5FF; --lime-soft:#F2FCD6;
+  --ink:#1E1A26; --muted:#5A5466; --line:#1E1A26; --bg:#FFFDF8; --surface:#FFFFFF; --code:#1E1A26;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Manrope,"Segoe UI",system-ui,-apple-system,Arial,sans-serif;font-size:16.5px;line-height:1.5}
+.topbar{height:10px;background:var(--grad)}
+.page{max-width:880px;margin:0 auto;padding:22px 20px 48px}
+h1,h2,h3{font-family:Jost,Futura,"Trebuchet MS",sans-serif;margin:0;line-height:1.08}
+p{margin:0}
+b,strong{font-weight:800}
+a{color:var(--purple);font-weight:800}
+ul,ol{margin:6px 0 0;padding-left:21px} li{margin:4px 0}
+
+.wordmark{line-height:1;display:inline-block}
+.wordmark .sb{display:block;font-weight:400;font-size:14px;color:var(--muted)}
+.wordmark .cs{display:block;font-family:Jost,Futura,sans-serif;font-weight:600;font-size:24px;color:var(--wordmark)}
+
+.hero{margin-top:18px;background:var(--sky-soft);border:3px solid var(--line);border-radius:24px;box-shadow:6px 6px 0 var(--line);padding:26px 26px 24px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(34px,7vw,52px);font-weight:800;max-width:560px;position:relative;z-index:1}
+.hero h1 .pop{color:var(--purple)}
+.hero .lede{margin-top:10px;font-size:18px;max-width:560px;position:relative;z-index:1}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;position:relative;z-index:1}
+.chip{background:var(--surface);border:2px solid var(--line);border-radius:999px;padding:4px 13px;font-size:13px;font-weight:800}
+
+.card{background:var(--surface);border:3px solid var(--line);border-radius:20px;box-shadow:5px 5px 0 var(--line);padding:16px 18px}
+.grownups{margin-top:22px;background:var(--orange-soft)}
+.grownups h2{font-size:22px;margin-bottom:4px}
+
+.part{margin-top:34px}
+.part-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.part-num{flex:none;width:52px;height:52px;border-radius:16px;border:3px solid var(--line);box-shadow:3px 3px 0 var(--line);font-family:Jost,sans-serif;font-weight:800;font-size:26px;text-align:center;line-height:46px}
+.part-head h2{font-size:clamp(26px,5vw,34px);font-weight:800}
+.part-head p{color:var(--muted);font-weight:600}
+.p1 .part-num{background:var(--sky)} .p2 .part-num{background:var(--pink)} .p3 .part-num{background:var(--sun)} .p4 .part-num{background:var(--lime)}
+
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.two .card h3{font-size:21px;margin-bottom:4px}
+.blue{background:var(--sky-soft)} .pink{background:var(--pink-soft)} .purple{background:var(--purple-soft)} .lime{background:var(--lime-soft)} .yellow{background:#FFF7D1}
+
+.bigbtn{display:inline-block;margin:6px 0 10px;background:var(--sun);color:var(--ink);text-decoration:none;font-weight:800;font-size:17px;border:3px solid var(--line);border-radius:999px;box-shadow:4px 4px 0 var(--line);padding:10px 22px}
+.bigbtn:hover{transform:translate(1px,1px);box-shadow:3px 3px 0 var(--line)}
+.bigbtn:focus-visible,a:focus-visible{outline:3px solid var(--purple);outline-offset:3px}
+.url{font-size:13px;color:var(--muted);word-break:break-all}
+
+pre{margin:10px 0 0;background:var(--code);color:#F4F0FA;border-radius:14px;padding:12px 14px;overflow-x:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:14px;line-height:1.55}
+pre .c{color:#9C93AC} pre .t{color:#7CD6FF} pre .new{background:var(--lime);color:var(--ink);border-radius:4px;padding:0 3px;font-weight:700} pre .old{background:#FF8FB5;color:var(--ink);border-radius:4px;padding:0 3px}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background:var(--purple-soft);border-radius:5px;padding:1px 6px;white-space:nowrap}
+.label{display:inline-block;margin-top:12px;font-weight:800;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase}
+
+.files{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-bottom:16px}
+.files .card{padding:12px 16px}
+.files .fname{display:block;font-weight:800;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:16px}
+
+.spots{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:10px}
+.spot{background:var(--surface);border:2px solid var(--line);border-radius:14px;padding:9px 12px;font-weight:700}
+.spot span{display:block;font-size:22px}
+
+.checklist{list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:8px 18px;margin-top:10px}
+.checklist li{position:relative;padding-left:32px;margin:0}
+.checklist li::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;border:3px solid var(--line);border-radius:6px;background:var(--surface)}
+
+.rules{margin-top:16px}
+.rules h3{font-size:21px;margin-bottom:4px}
+
+.fix{margin-top:34px;background:var(--purple-soft)}
+.fix h2{font-size:28px;margin-bottom:8px}
+.fix dl{margin:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:4px 22px}
+.fix dt{font-weight:800;margin-top:10px;color:var(--purple)}
+.fix dd{margin:2px 0 0}
+
+.foot{margin-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:14px;color:var(--muted)}
+.foot b{color:var(--ink)}
+
+@page{size:Letter;margin:.45in .5in}
+@media print{
+  body{font-size:12px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  :root{padding:0}
+  .page{max-width:none;padding:0}
+  .topbar{display:none}
+  .hero{padding:16px 18px;box-shadow:4px 4px 0 var(--line)}
+  .hero h1{font-size:34px}
+  .hero .lede{font-size:13.5px}
+  .part{margin-top:18px;break-inside:auto}
+  .card,.spot,pre,.two>*{break-inside:avoid}
+  .part-head{break-after:avoid}
+  .bigbtn{box-shadow:none}
+}
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<div class="page">
+  <div class="wordmark"><span class="sb">south bend</span><span class="cs">CODE SCHOOL</span></div>
+
+  <header class="hero">
+    <h1>Build your <span class="pop">About Me</span> website!</h1>
+    <p class="lede">A guide for families: set up a free CodePen account, make your own copy of our template, and fill it with all about you.</p>
+    <div class="chips"><span class="chip">💻 Any computer with a web browser</span><span class="chip">🆓 Free</span><span class="chip">👨‍👩‍👧 Kids + grown-ups together</span></div>
+  </header>
+
+  <div class="card grownups">
+    <h2>👋 Grown-ups, read this first</h2>
+    <ul>
+      <li>Websites made on free CodePen accounts are <b>public</b>, so anyone with the link can see them.</li>
+      <li>Use a <b>first name or nickname only</b>. Leave out last names, school names, addresses and photos of your child’s face.</li>
+      <li>Sign up with a <b>parent’s email</b>, and pick a username that doesn’t include your child’s full name.</li>
+    </ul>
+  </div>
+
+  <!-- PART 1 -->
+  <section class="part p1">
+    <div class="part-head"><div class="part-num">1</div><div><h2>Get into CodePen</h2><p>Pick the box that fits you.</p></div></div>
+    <div class="two">
+      <div class="card blue">
+        <h3>🌱 New to CodePen?</h3>
+        <ol>
+          <li>Go to <b>codepen.io</b> and click <b>Sign Up</b>.</li>
+          <li>Follow the steps using a parent’s email.</li>
+          <li>Check that email inbox for a message from CodePen and click the link to verify the account. Check spam if you don’t see it.</li>
+        </ol>
+      </div>
+      <div class="card lime">
+        <h3>🔑 Already have an account?</h3>
+        <ol>
+          <li>Go to <b>codepen.io</b> and click <b>Log In</b>.</li>
+          <li>Sign in the same way you did before.</li>
+          <li>That’s it! Go to Part 2.</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- PART 2 -->
+  <section class="part p2">
+    <div class="part-head"><div class="part-num">2</div><div><h2>Make your own copy</h2><p>This is called a “fork.” It copies our template into your account.</p></div></div>
+    <div class="card pink">
+      <ol>
+        <li>Make sure you’re logged in, then open the template:<br>
+          <a class="bigbtn" href="https://codepen.io/editor/SBCSstudent/pen/01a1f41a-f705-7c3e-9c9a-d1f9cddd9fed" target="_blank" rel="noopener">Open the SBCS template →</a><br>
+          <span class="url">codepen.io/editor/SBCSstudent/pen/01a1f41a-f705-7c3e-9c9a-d1f9cddd9fed</span></li>
+        <li>Click the <b>Pen Actions</b> menu (the <b>•••</b> button), then click <b>Fork</b>.</li>
+        <li>Your copy opens with the same name but its own new link. That one is yours to change!</li>
+      </ol>
+      <p style="margin-top:8px"><b>Tip:</b> if you start typing before you fork, CodePen will ask you to fork so your changes aren’t lost. Say yes.</p>
+    </div>
+  </section>
+
+  <!-- PART 3 -->
+  <section class="part p3">
+    <div class="part-head"><div class="part-num">3</div><div><h2>Make it all about you</h2><p>Change the sample words to your own.</p></div></div>
+
+    <div class="files">
+      <div class="card yellow"><span class="fname">index.html</span><p>The <b>words and pictures</b> on your website. You’ll spend most of your time here.</p></div>
+      <div class="card purple"><span class="fname">style.css</span><p>How your website <b>looks</b>: colors, sizes and shapes.</p></div>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:22px">✏️ First: put in your name</h3>
+      <p>Open <b>index.html</b>. Find <code>[insert first name]</code> and type your first name or nickname instead. It shows up in three places:</p>
+      <div class="spots">
+        <div class="spot"><span>🌟</span>The big hello at the top</div>
+        <div class="spot"><span>👋</span>The “All About Me” card</div>
+        <div class="spot"><span>💙</span>The “Made with 💙 by” line at the bottom</div>
+      </div>
+      <span class="label">Example</span>
+<pre><span class="c">&lt;!-- Before --&gt;</span>
+<span class="t">&lt;h1&gt;</span>Hi, I'm <span class="old">[insert first name]</span>!<span class="t">&lt;/h1&gt;</span>
+
+<span class="c">&lt;!-- After --&gt;</span>
+<span class="t">&lt;h1&gt;</span>Hi, I'm <span class="new">Maya</span>!<span class="t">&lt;/h1&gt;</span></pre>
+    </div>
+
+    <div class="card rules yellow">
+      <h3>⭐ Golden rules for editing</h3>
+      <ul>
+        <li>Look for the gray notes that say <code>&lt;!-- EDIT: ... --&gt;</code>. They point to the parts you change.</li>
+        <li>Only change the words <b>between</b> the tags. Leave the <code>&lt; &gt;</code> parts and quote marks alone.</li>
+        <li>Made a mistake? Press <b>Ctrl+Z</b> (or <b>⌘+Z</b> on a Mac) to undo.</li>
+      </ul>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <h3 style="font-size:22px">✅ Then fill in each section</h3>
+      <ul class="checklist">
+        <li>Welcome message at the top</li>
+        <li>All About Me: your grade and 3 words about you</li>
+        <li>My Favorites: food, animal, game and color</li>
+        <li>Things I Love to Do: 3 activities</li>
+        <li>My Picture Gallery: 3 pictures with captions</li>
+        <li>When I Grow Up: your dream job and a picture</li>
+        <li>Me + AI: answer the 3 questions</li>
+        <li>Bonus: change the website title near the top of the file</li>
+      </ul>
+    </div>
+
+    <div class="two" style="margin-top:16px">
+      <div class="card blue">
+        <h3>🖼️ Adding a picture</h3>
+        <ol>
+          <li>Find a picture online (not of yourself).</li>
+          <li>Right-click it and choose <b>Copy image address</b>.</li>
+          <li>In index.html, replace <code>PASTE-IMAGE-LINK-HERE</code> with what you copied. Keep the quote marks!</li>
+        </ol>
+<pre><span class="t">&lt;img</span> src="<span class="new">https://…/puppy.jpg</span>" alt="My favorite animal"<span class="t">&gt;</span></pre>
+      </div>
+      <div class="card purple">
+        <h3>🎨 Bonus: change the colors</h3>
+        <p>Open <b>style.css</b>. Colors are written as codes like <code>#2f80ed</code> (blue) and <code>#ffd23f</code> (yellow).</p>
+        <ol>
+          <li>Search “color picker” in a new tab and pick a color you love.</li>
+          <li>Copy its code (it starts with <code>#</code>).</li>
+          <li>Swap it in for one of the codes and watch your website change!</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- PART 4 -->
+  <section class="part p4">
+    <div class="part-head"><div class="part-num">4</div><div><h2>Save and share</h2><p>Don’t lose your hard work!</p></div></div>
+    <div class="two">
+      <div class="card lime">
+        <h3>💾 Save often</h3>
+        <p>Press <b>Ctrl+S</b> (or <b>⌘+S</b> on a Mac) every few minutes.</p>
+        <p style="margin-top:6px">To find your website later, log in and go to <b>codepen.io/your-work</b>.</p>
+      </div>
+      <div class="card pink">
+        <h3>🎉 Show it off</h3>
+        <p>Copy the link from your browser’s address bar and share it with family. Remember: anyone with the link can see it.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="card fix">
+    <h2>🛟 If something goes wrong</h2>
+    <dl>
+      <div><dt>I can’t save my changes</dt><dd>You’re still on the SBCS template. Fork it first (Part 2), then make your changes in your copy.</dd></div>
+      <div><dt>My website looks broken</dt><dd>Press Ctrl+Z (⌘+Z) to undo until it looks right again. A missing <code>&lt;</code>, <code>&gt;</code> or quote mark is usually the cause.</dd></div>
+      <div><dt>My picture shows a broken icon</dt><dd>Try a different picture. Make sure you chose “Copy image address,” not the page address.</dd></div>
+      <div><dt>I can’t find my website</dt><dd>Log in, then go to codepen.io/your-work.</dd></div>
+      <div><dt>The verification email never came</dt><dd>Check the spam folder of the email you signed up with.</dd></div>
+      <div><dt>Still stuck?</dt><dd>Email us at <b>info@southbendcodeschool.com</b>.</dd></div>
+    </dl>
+  </div>
+
+  <div class="foot"><span><b>South Bend Code School</b></span><span>Questions? info@southbendcodeschool.com</span></div>
+</div>
+</body>
+</html>
